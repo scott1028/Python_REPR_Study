@@ -11,7 +11,7 @@ class Main(object):
     def __repr__(self):
         self.execute()
         # make self as a List Object instead of super(Main, self).__repr__()
-        return repr(self.where)
+        return repr(' and '.join(self.where))
 
     # 掉用 len() 時候提取
     def __len__(self):
@@ -37,11 +37,13 @@ class Main(object):
 
     # 實作串接 API
     def query(self, args):
-        self.where.append(args)
+        # keep per condition unique
+        self.where.append(str(args))
+        self.where = list(set(self.where))
         return self
 
 if __name__ == '__main__':
     app = Main()
-    cache = app.query(2).query(4).query(1)      # execute __repr__ not yet
+    cache = app.query('id >= 1').query('name != null').query('status = 1')      # execute __repr__ not yet
     print cache      # execute __repr__
     import pdb; pdb.set_trace()
