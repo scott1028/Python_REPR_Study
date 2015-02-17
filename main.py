@@ -31,7 +31,7 @@ class Main(object):
     # 真正的執行 Method
     def execute(self, idx=None):
         sql = 'get object for repress'
-        if idx:
+        if idx is not None:
             sql += ' with args: %s' % (repr(idx))
         print sql
 
