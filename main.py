@@ -3,6 +3,10 @@
 import os
 import sys
 
+# 只有內建的 Python Type 資料可以使用預設的 json.dumps, 其餘自訂型態需要指定 dumps 的 cls。
+# ref: http://www.rafekettler.com/magicmethods.html#pickling
+import json
+
 class Main(object):
     def __init__(self):
         self.where = []
